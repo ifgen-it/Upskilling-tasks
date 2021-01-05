@@ -2,10 +2,10 @@ package com.luxoft.RetirementCalculator2.domain.model;
 
 public class RequestDTO {
 
-    private int currentAge;
-    private int retireAge;
+    private String currentAge;
+    private String retireAge;
 
-    public RequestDTO(int currentAge, int retireAge) {
+    public RequestDTO(String currentAge, String retireAge) {
         this.currentAge = currentAge;
         this.retireAge = retireAge;
     }
@@ -13,19 +13,19 @@ public class RequestDTO {
     public RequestDTO() {
     }
 
-    public int getCurrentAge() {
+    public String getCurrentAge() {
         return currentAge;
     }
 
-    public void setCurrentAge(int currentAge) {
+    public void setCurrentAge(String currentAge) {
         this.currentAge = currentAge;
     }
 
-    public int getRetireAge() {
+    public String getRetireAge() {
         return retireAge;
     }
 
-    public void setRetireAge(int retireAge) {
+    public void setRetireAge(String retireAge) {
         this.retireAge = retireAge;
     }
 }
