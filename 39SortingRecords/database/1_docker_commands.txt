@@ -1,0 +1,2 @@
+docker pull mysql/mysql-server:latest
+docker run --detach --name=mysql1 --env="MYSQL_ROOT_PASSWORD=root" -e MYSQL_ROOT_HOST=% --publish 6603:3306 -e MYSQL_DATABASE=employeedb -d mysql/mysql-server:latest
