@@ -58,9 +58,13 @@ public class EmployeeController {
 
 
     @GetMapping("/employee/{id}")
-    public Optional<Employee> getAll(@PathVariable("id") Integer id) {
+    public ResponseEntity<Employee> getOne(@PathVariable("id") Integer id) {
 
-        return employeeService.findById(id);
+        Optional<Employee> emp = employeeService.findById(id);
+        if (!emp.isPresent())
+            return ResponseEntity.notFound().build();
+        else
+            return ResponseEntity.status(HttpStatus.OK).body(emp.get());
     }
 
     @PostMapping("/employee")

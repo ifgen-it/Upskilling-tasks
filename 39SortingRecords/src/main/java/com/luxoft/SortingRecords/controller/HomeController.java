@@ -1,22 +1,17 @@
 package com.luxoft.SortingRecords.controller;
 
 import com.luxoft.SortingRecords.entity.Employee;
-import com.luxoft.SortingRecords.service.EmployeeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
 
 @Controller
 public class HomeController {
-
-    private EmployeeService employeeService;
-
-    public HomeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @GetMapping("/home")
     public String home(){
@@ -33,10 +28,20 @@ public class HomeController {
     @GetMapping("/home/employee/{id}")
     public String editEmployee(@PathVariable("id") Integer id, Model model){
 
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/employee/" + id;
+        ResponseEntity<Employee> response = null;
+        try {
+            response = restTemplate.getForEntity(url, Employee.class);
+        }
+        catch (Exception e){
+            System.out.println("Incorrect employee id=" + id);
+            System.out.println(e);
+        }
 
-        Optional<Employee> emp = employeeService.findById(id);
-        if (emp.isPresent()){
-            model.addAttribute("employee", emp.get());
+        if (response !=null && response.getStatusCode().equals(HttpStatus.OK)){
+            Employee employee = response.getBody();
+            model.addAttribute("employee", employee);
             return "employee";
         }
         else {
@@ -47,9 +52,20 @@ public class HomeController {
     @GetMapping("/home/employee/{id}/delete")
     public String deleteEmployee(@PathVariable("id") Integer id, Model model){
 
-        Optional<Employee> emp = employeeService.findById(id);
-        if (emp.isPresent()){
-            model.addAttribute("employee", emp.get());
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8080/employee/" + id;
+        ResponseEntity<Employee> response = null;
+        try {
+            response = restTemplate.getForEntity(url, Employee.class);
+        }
+        catch (Exception e){
+            System.out.println("Incorrect employee id=" + id);
+            System.out.println(e);
+        }
+
+        if (response !=null && response.getStatusCode().equals(HttpStatus.OK)){
+            Employee employee = response.getBody();
+            model.addAttribute("employee", employee);
             return "delete-employee";
         }
         else {
