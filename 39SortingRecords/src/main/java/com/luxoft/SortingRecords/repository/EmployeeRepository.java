@@ -18,6 +18,8 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
     List<Employee> findByLastName(String lastName);
 
-
     Employee save(Employee employee);
+
+    void deleteById(Integer id);
+
 }

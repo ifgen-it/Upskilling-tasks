@@ -2,11 +2,9 @@ package com.luxoft.SortingRecords.rest;
 
 import com.luxoft.SortingRecords.entity.Employee;
 import com.luxoft.SortingRecords.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,14 +19,14 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/employee", params = {"!sorting", "!asc", "!position", "!firstName", "!lastName"})
-    List<Employee> getAll() {
+    public List<Employee> getAll() {
 
         return employeeService.findAll();
     }
 
     // GET /employee?sorting=firstName&asc=true
     @GetMapping(value = "/employee", params = {"sorting", "asc"})
-    List<Employee> getAllSorted(@RequestParam("sorting") String sorting,
+    public List<Employee> getAllSorted(@RequestParam("sorting") String sorting,
                                 @RequestParam("asc") String asc) {
 
         if (asc.equals("false"))
@@ -39,29 +37,55 @@ public class EmployeeController {
 
     // GET /employee?position=DBA
     @GetMapping(value = "/employee", params = "position")
-    List<Employee> getAllByPosition(@RequestParam("position") String position) {
+    public List<Employee> getAllByPosition(@RequestParam("position") String position) {
 
         return employeeService.findByPosition(position);
     }
 
     // GET /employee?firstName=John
     @GetMapping(value = "/employee", params = "firstName")
-    List<Employee> getAllByFirstName(@RequestParam("firstName") String firstName) {
+    public List<Employee> getAllByFirstName(@RequestParam("firstName") String firstName) {
 
         return employeeService.findByFirstName(firstName);
     }
 
     // GET /employee?lastName=Weber
     @GetMapping(value = "/employee", params = "lastName")
-    List<Employee> getAllByLastName(@RequestParam("lastName") String lastName) {
+    public List<Employee> getAllByLastName(@RequestParam("lastName") String lastName) {
 
         return employeeService.findByLastName(lastName);
     }
 
 
     @GetMapping("/employee/{id}")
-    Optional<Employee> getAll(@PathVariable("id") Integer id) {
+    public Optional<Employee> getAll(@PathVariable("id") Integer id) {
 
         return employeeService.findById(id);
+    }
+
+    @PostMapping("/employee")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Employee create(@RequestBody Employee employee){
+
+        Employee employeeWithId = employeeService.create(employee);
+        return employeeWithId;
+    }
+
+    @DeleteMapping("/employee/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Integer id){
+
+        employeeService.delete(id);
+    }
+
+    @PutMapping("/employee/{id}")
+    public ResponseEntity<Employee> editEmployee(@PathVariable("id") Integer id,
+                                       @RequestBody Employee newEmployee){
+
+        Employee employee = employeeService.update(id, newEmployee);
+        if (employee == null)
+            return ResponseEntity.notFound().build();
+        else
+            return ResponseEntity.status(HttpStatus.OK).body(employee);
     }
 }

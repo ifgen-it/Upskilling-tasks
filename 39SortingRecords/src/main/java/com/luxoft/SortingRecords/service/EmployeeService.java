@@ -19,4 +19,10 @@ public interface EmployeeService {
 
     List<Employee> findByLastName(String lastName);
 
+    Employee create(Employee employee);
+
+    void delete(Integer id);
+
+    Employee update(Integer id, Employee newEmployee);
+
 }
