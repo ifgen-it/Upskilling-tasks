@@ -10,32 +10,33 @@
 <body>
 
 <div style="padding-left: 20px; padding-top: 10px">
-    <h3>Employee</h3>
+    <h3>Delete employee</h3>
     <a href="home.html" th:href="@{/home}">Home</a>
     <br><br>
 
-    <label>First Name</label>
-    <input id="firstName" width="40">
-    <label id="error-firstName" style="color: red"></label>
+    <label>First Name: </label>
+    <span th:text="${employee.firstName}"></span>
 
     <br>
-    <label>Last Name</label>
-    <input id="lastName" width="40">
-    <label id="error-lastName" style="color: red"></label>
+    <label>Last Name: </label>
+    <span th:text="${employee.lastName}"></span>
 
     <br>
-    <label>Position</label>
-    <input id="position" width="40">
-    <label id="error-position" style="color: red"></label>
+    <label>Position: </label>
+    <span th:text="${employee.position}"></span>
 
     <br>
-    <label>Separation date</label>
-    <input id="separationDate" type="date">
-    <label id="error-sepDate" style="color: red"></label>
+    <label>Separation date: </label>
+    <span th:text="${employee.separationDate}"></span>
 
     <br><br>
-    <button id="createEmployee">Save</button>
-    <br><br>
+    <p style="color: red;">If you want to delete this employee, press the button 'Delete'</p>
+
+    <div>
+        <button id="deleteEmployee">Delete</button>
+    </div>
+    <input hidden="hidden" id="employeeId" th:value="${employee.id}"></input>
+    <br>
 
     <p id="answer">Result will be here..</p>
 

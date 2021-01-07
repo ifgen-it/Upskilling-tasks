@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting records</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div style="padding-left: 20px; padding-top: 10px">
+    <h3>Employee</h3>
+    <a href="home.html" th:href="@{/home}">Home</a>
+    <br><br>
+
+    <label>First Name</label>
+    <span th:if="${employee != null}"><input id="firstName-edit" width="40" th:value="${employee.firstName}"></span>
+    <span th:if="${employee == null}"><input id="firstName" width="40"></span>
+    <label id="error-firstName" style="color: red"></label>
+
+    <br>
+    <label>Last Name</label>
+    <span th:if="${employee != null}"><input id="lastName-edit" width="40" th:value="${employee.lastName}"></span>
+    <span th:if="${employee == null}"><input id="lastName" width="40"></span>
+    <label id="error-lastName" style="color: red"></label>
+
+    <br>
+    <label>Position</label>
+    <span th:if="${employee != null}"><input id="position-edit" width="40" th:value="${employee.position}"></span>
+    <span th:if="${employee == null}"><input id="position" width="40"></span>
+    <label id="error-position" style="color: red"></label>
+
+    <br>
+    <label>Separation date</label>
+    <span th:if="${employee != null}"><input id="separationDate-edit" type="date" th:value="${employee.separationDate}"></span>
+    <span th:if="${employee == null}"><input id="separationDate" type="date"></span>
+    <label id="error-sepDate" style="color: red"></label>
+
+    <br><br>
+
+    <div th:if="${employee == null}">
+        <button id="createEmployee">Create</button>
+    </div>
+    <div th:if="${employee != null}">
+        <button id="updateEmployee">Update</button>
+        <input hidden="hidden" id="employeeId" th:value="${employee.id}"></input>
+    </div>
+
+    <br>
+
+    <p id="answer">Result will be here..</p>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>
