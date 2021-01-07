@@ -18,12 +18,12 @@ USE `employeedb` ;
 -- Table `employeedb`.`employee`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `employeedb`.`employee` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) NOT NULL,
-  `position` VARCHAR(100) NOT NULL,
-  `separation_date` DATE NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+                                                       `id` INT NOT NULL AUTO_INCREMENT,
+                                                       `first_name` VARCHAR(100) NOT NULL,
+                                                       `last_name` VARCHAR(100) NOT NULL,
+                                                       `position` VARCHAR(100) NOT NULL,
+                                                       `separation_date` DATE NULL,
+                                                       PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
