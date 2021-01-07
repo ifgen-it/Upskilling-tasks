@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting records</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div style="padding-left: 20px; padding-top: 10px">
+    <h3>Sorting records</h3>
+
+    <a href="new-employee.html" th:href="@{/home/employee}">Add employee</a>
+    <br>
+    <br>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <td></td>
+            <td style="width: 60px">By Id</td>
+            <td>By First Name</td>
+            <td>By Last Name</td>
+            <td>By Position</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ASC</td>
+            <td>
+                <button id="id-asc">sort</button>
+            </td>
+            <td>
+                <button id="firstName-asc">sort</button>
+            </td>
+            <td>
+                <button id="lastName-asc">sort</button>
+            </td>
+            <td>
+                <button id="position-asc">sort</button>
+            </td>
+        </tr>
+        <tr>
+            <td>DESC</td>
+            <td>
+                <button id="id-desc">sort</button>
+            </td>
+            <td>
+                <button id="firstName-desc">sort</button>
+            </td>
+            <td>
+                <button id="lastName-desc">sort</button>
+            </td>
+            <td>
+                <button id="position-desc">sort</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <table id="table1" border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Position</th>
+            <th>Separation date</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>

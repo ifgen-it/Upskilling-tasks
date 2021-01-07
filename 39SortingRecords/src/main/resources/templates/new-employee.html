@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting records</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div style="padding-left: 20px; padding-top: 10px">
+    <h3>Employee</h3>
+    <a href="home.html" th:href="@{/home}">Home</a>
+    <br><br>
+
+    <label>First Name</label>
+    <input id="firstName" width="40">
+    <label id="error-firstName" style="color: red"></label>
+
+    <br>
+    <label>Last Name</label>
+    <input id="lastName" width="40">
+    <label id="error-lastName" style="color: red"></label>
+
+    <br>
+    <label>Position</label>
+    <input id="position" width="40">
+    <label id="error-position" style="color: red"></label>
+
+    <br>
+    <label>Separation date</label>
+    <input id="separationDate" type="date">
+    <label id="error-sepDate" style="color: red"></label>
+
+    <br><br>
+    <button id="createEmployee">Save</button>
+    <br><br>
+
+    <p id="answer">Result will be here..</p>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/script.js}"></script>
+
+</body>
+</html>
